@@ -15,12 +15,28 @@ export class App extends Component {
     filter: ''
   }
 
+  componentDidMount() { 
+    const contacts = JSON.parse(localStorage.getItem("contacts"));
+    if (contacts?.length) {
+      this.setState({contacts})
+    }
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts.length !== contacts.length) {
+      console.log('update')
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
+  }
+
   addContact = ({ name, number }) => {
-      const { contacts } = this.state;
-      if (this.isDublcate(name)) {
+       if (this.isDublcate(name)) {
         return alert(`${name} is already in contacts.`)
       }
     this.setState((prevState) => {
+       const { contacts } = prevState;
       const newContact = {
         id: nanoid(),
         name,
