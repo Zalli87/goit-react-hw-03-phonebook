@@ -16,11 +16,11 @@ export class App extends Component {
   }
 
   addContact = ({ name, number }) => {
+      const { contacts } = this.state;
       if (this.isDublcate(name)) {
         return alert(`${name} is already in contacts.`)
       }
     this.setState((prevState) => {
-      const { contacts } = prevState;
       const newContact = {
         id: nanoid(),
         name,
@@ -76,7 +76,7 @@ export class App extends Component {
           <ContactForm onSubmit={this.addContact} />
 
           <h2>Contacts</h2>
-          <Filter handlChange={this.handlChangeFilter} />
+          <Filter handlChange={this.handlChangeFilter} filter={this.state.filter} />
           <ContactList contacts={contacts} removeContact={this.removeContact}/>
         </div>
       </>

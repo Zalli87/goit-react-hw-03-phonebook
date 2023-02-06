@@ -7,7 +7,8 @@ export const ContactListItem = ({id, name, number, removeContact}) => {
 }
 
 ContactListItem.propTypes = {
-    id: PropTypes.string,
-    name: PropTypes.string,
-    number: PropTypes.string,
-    removeContact: PropTypes.func }
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    removeContact: PropTypes.func.isRequired
+}
