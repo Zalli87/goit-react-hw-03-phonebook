@@ -16,11 +16,11 @@ export class App extends Component {
   }
 
   addContact = ({ name, number }) => {
-      const { contacts } = this.state;
       if (this.isDublcate(name)) {
         return alert(`${name} is already in contacts.`)
       }
     this.setState((prevState) => {
+      const { contacts } = prevState;
       const newContact = {
         id: nanoid(),
         name,
